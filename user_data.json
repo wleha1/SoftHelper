@@ -1,0 +1,8 @@
+[
+    {
+        "user_id": 67890,
+        "username": "another_user",
+        "last_message": "У меня вопрос",
+        "status": "can_message"
+    }
+]
