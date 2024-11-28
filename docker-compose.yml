@@ -3,7 +3,7 @@ services:
     build: ./bot
     container_name: telegram-bot
     environment:
-      - TELEGRAM_BOT_TOKEN=7789935459:AAGdHICLS2t7Gs7W0hVNiivYmY9PAsV-88A
+      - TELEGRAM_BOT_TOKEN=${{ secrets.BOT_TOKEN }}
     # volumes:
     #   - .:/app 
     restart: unless-stopped
