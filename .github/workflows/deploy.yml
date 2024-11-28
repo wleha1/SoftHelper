@@ -34,6 +34,9 @@ jobs:
         
         # Run docker-compose on the VPS to pull and build the latest version
         ssh -o StrictHostKeyChecking=no ${{ secrets.VPS_USER }}@${{ secrets.VPS_SERVER_IP }} "cd /var/www/html/SoftHelper && docker-compose pull && docker-compose up -d --build"
+    - name: Delete old containers
+      run: docker system prune -f
+          
       env:
         SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
         VPS_SERVER_IP: ${{ secrets.VPS_SERVER_IP }}
