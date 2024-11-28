@@ -20,15 +20,20 @@ jobs:
     
     - name: Add remote host to known_hosts
       run: |
-      mkdir -p ~/.ssh
-      ssh-keyscan -H your.vps.ip >> ~/.ssh/known_hosts
+        mkdir -p ~/.ssh
+        ssh-keyscan -H ${{ secrets.VPS_SERVER_IP }} >> ~/.ssh/known_hosts
 
     - name: Install rsync
       run: sudo apt-get install rsync
 
     - name: Deploy to VPS
       run: |
+        # Sync files with rsync
         rsync -avz --delete --exclude='.git*' --exclude='node_modules' --exclude='*.env' ./ ${{ secrets.VPS_USER }}@${{ secrets.VPS_SERVER_IP }}:/var/www/html/SoftHelper
+        
+        # Run docker-compose on the VPS to pull and build the latest version
         ssh -o StrictHostKeyChecking=no ${{ secrets.VPS_USER }}@${{ secrets.VPS_SERVER_IP }} "cd /var/www/html/SoftHelper && docker-compose pull && docker-compose up -d --build"
       env:
         SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+        VPS_SERVER_IP: ${{ secrets.VPS_SERVER_IP }}
+        VPS_USER: ${{ secrets.VPS_USER }}
