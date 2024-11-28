@@ -6,6 +6,13 @@ services:
       - BOT_TOKEN=${BOT_TOKEN}
     # volumes:
     #   - .:/app 
+    networks:
+      - bot
     restart: unless-stopped
     ports: 
       - 7070:7070
+    
+
+networks:
+  bot:
+    driver: bridge
