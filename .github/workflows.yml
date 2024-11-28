@@ -23,7 +23,7 @@ jobs:
 
     - name: Deploy to VPS
       run: |
-        rsync -avz --delete --exclude='.git*' --exclude='node_modules' --exclude='*.env' ./ ${{ secrets.VPS_USER }}@${{ secrets.VPS_SERVER_IP }}:/var/www/your_project
-        ssh -o StrictHostKeyChecking=no ${{ secrets.VPS_USER }}@${{ secrets.VPS_SERVER_IP }} "cd /var/www/your_project && docker-compose pull && docker-compose up -d --build"
+        rsync -avz --delete --exclude='.git*' --exclude='node_modules' --exclude='*.env' ./ ${{ secrets.VPS_USER }}@${{ secrets.VPS_SERVER_IP }}:/var/www/html/SoftHelper
+        ssh -o StrictHostKeyChecking=no ${{ secrets.VPS_USER }}@${{ secrets.VPS_SERVER_IP }} "cd /var/www/html/SoftHelper && docker-compose pull && docker-compose up -d --build"
       env:
         SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
