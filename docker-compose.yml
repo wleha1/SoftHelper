@@ -1,0 +1,11 @@
+services:
+  telegram-bot:
+    build: ./bot
+    container_name: telegram-bot
+    environment:
+      - TELEGRAM_BOT_TOKEN=7789935459:AAGdHICLS2t7Gs7W0hVNiivYmY9PAsV-88A
+    # volumes:
+    #   - .:/app 
+    restart: unless-stopped
+    ports: 
+      - 7070:7070
