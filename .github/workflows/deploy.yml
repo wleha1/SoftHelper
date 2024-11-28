@@ -17,6 +17,11 @@ jobs:
       uses: webfactory/ssh-agent@v0.5.3
       with:
         ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+    
+    - name: Add remote host to known_hosts
+      run: |
+      mkdir -p ~/.ssh
+      ssh-keyscan -H your.vps.ip >> ~/.ssh/known_hosts
 
     - name: Install rsync
       run: sudo apt-get install rsync
