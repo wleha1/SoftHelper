@@ -5,7 +5,7 @@ from telegram.ext import (
     ApplicationBuilder, CommandHandler, MessageHandler, CallbackQueryHandler, filters, ContextTypes
 )
 
-TOKEN = os.getenv('TELEGRAM_BOT_TOKEN')
+TOKEN = os.getenv('BOT_TOKEN')
 ADMIN_ID = 7436283720  # Ваш Telegram ID   
 DATA_FILE = "user_data.json"  # Файл для хранения данных
 

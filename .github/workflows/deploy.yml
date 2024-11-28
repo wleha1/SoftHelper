@@ -28,6 +28,7 @@ jobs:
 
     - name: Deploy to VPS
       run: |
+        echo "BOT_TOKEN=${{ secrets.BOT_TOKEN }}" >> .env
         # Sync files with rsync
         rsync -avz --delete --exclude='.git*' --exclude='node_modules' --exclude='*.env' ./ ${{ secrets.VPS_USER }}@${{ secrets.VPS_SERVER_IP }}:/var/www/html/SoftHelper
         
